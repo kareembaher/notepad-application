@@ -1,0 +1,120 @@
+spring.profiles.active: dev
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/notepad
+    username: root
+    password: root
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  thymeleaf:
+    cache: false
+  messages:
+    cache-seconds: 0
+
+flyway.enabled: true
+endpoints.sensitive: false
+
+---
+
+test_mysql_host: ${ENV_TEST_MYSQL_HOST:localhost}
+
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://${test_mysql_host}:3306/notepad
+    username: root
+    password: root
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+flyway.enabled: true
+endpoints.sensitive: false
+
+---
+
+spring:
+  profiles: testing
+  datasource:
+    url: ${testing_datasource_url}
+    username: ${testing_datasource_username}
+    password: ${testing_datasource_password}
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+flyway.enabled: true
+endpoints.sensitive: false
+logging.config: /etc/notepad/logback-spring.xml
+
+---
+
+spring:
+  profiles: staging
+  datasource:
+    url: ${staging_datasource_url}
+    username: ${staging_datasource_username}
+    password: ${staging_datasource_password}
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+flyway.enabled: true
+endpoints.sensitive: false
+logging.config: /etc/notepad/logback-spring.xml
+
+---
+
+spring:
+  profiles: production
+  datasource:
+    url: ${production_datasource_url}
+    username: ${production_datasource_username}
+    password: ${production_datasource_password}
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+flyway.enabled: true
+endpoints.sensitive: false
+logging.config: /etc/notepad/logback-spring.xml
