@@ -14,34 +14,34 @@ read password
 echo $password > docker-password.txt
 cat docker-password.txt | docker login --username $username --password-stdin
 
-#change the working directory
+#Change the working directory
 cd notepad
 
-#building the application with maven
+#Building the application with maven
 echo ""
 echo ""
 echo "Building the application..."
 sleep 2
 mvn clean install package -Dmaven.test.skip=true
 
-#building the docker image
+#Building the docker image
 echo ""
 echo ""
 echo "Building the docker image..."
 sleep 2
 docker build .
 
-#pushing the docker image to docker-hub
+#Pushing the docker image to docker-hub
 echo ""
 echo ""
 echo "Pushing the docker image to docker-hub..."
 sleep 2
 docker push kareembaher/notepad:latest
 
-#change working directory
+#Change working directory
 cd ../kubernetes-files
 
-#execute kubernetes yaml files
+#Execute kubernetes yaml files
 echo ""
 echo ""
 echo "Running Kubernetes files..."
