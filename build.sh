@@ -51,3 +51,21 @@ kubectl create -f mysql.service.yml
 kubectl create -f mysql.pod.yml
 kubectl create -f notepad.service.yml
 kubectl create -f notepad.deployment.yml
+echo ""
+echo ""
+echo "Creation in progress..."
+echo ""
+echo "Please wait for few seconds..."
+sleep 20
+
+#Display the pods status
+echo ""
+echo ""
+echo "Pods status:"
+sleep 2
+kubectl get pod
+
+echo ""
+echo ""
+echo "Please use the below URL to access you application"
+minikube service notepad-app-service --url

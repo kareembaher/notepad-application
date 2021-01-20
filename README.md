@@ -47,7 +47,7 @@ This is a simple bash script that sums up all the manual commands you will have 
 #### docker-password.txt:
 This file will contain your docker-hub regestry password for your login from the build.sh script.
 
-## How to use it:
+## How to use:
 You will only have to execute the script provided
 ```
 ./build.sh
@@ -65,7 +65,7 @@ kubectl get pod
 minikube service notepad-app-service
 ```
 
-# The script process
+## The build.sh script process:
 This section describes what is done behind the curtains.
 
 - When you execute the bash script `build.sh` you will be promted to enter your Docker-hub username and password.
@@ -74,8 +74,8 @@ This section describes what is done behind the curtains.
 - The next step is to build our application from the code we have in `notepad` directory using this command `mvn clean install package -Dmaven.test.skip=true`.
 - After the previous step is finished, is to make a docker image out of the built application using this command `docker build -t $username/notepad .`, here the `$username` will be subistituted with the username you provided for the Docker-hub account.
 - Now, we will push or image to our docker-hub regestry using this command `docker push kareembaher/notepad`
-- Now we will begin executing the Kubernetes yaml files:
+- Now we will begin executing the Kubernetes yaml files in `kubernetes-files` directory:
 - First, we will create our secrets where we stored our encrypted sensitive data including **MYSQL_ROOT_PASSWORD** and **MYSQL_DATABASE** using this command `kubectl create -f secret.yml`
 - Secondly, we will create our services for the Mysql pod and Notepad deployment, where we will communicate to them and to each other using these services, using this command `kubectl create -f mysql.service.yml` and `kubectl create -f notepad.service.yml`
-- Then, we will start the Mysql pod where we configured the image to be mysql v.5.7, listen to port 3306, and env. variables imported from secrets previously created.
+- Then, we will start the Mysql pod where we configured the image to be mysql v.5.7, listen to port 3306, and env. variables imported from secrets previously created `kubectl create -f mysql.pod.yml`.
 - Finally, we will start creating our Notepad deployment, where I configured it with 2 replicas, listen to port 8080, env. variables imported from secrets previously created, and imported the image from our Docker-hub regestry. We used this command to start our deployment `kubectl create -f notepad.deployment.yml`.
