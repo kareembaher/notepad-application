@@ -67,5 +67,5 @@ kubectl get pod
 
 echo ""
 echo ""
-echo "Please use the below URL to access you application"
+echo "Please use the below URL to access your application"
 minikube service notepad-app-service --url
