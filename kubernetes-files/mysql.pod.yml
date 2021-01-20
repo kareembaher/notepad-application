@@ -27,3 +27,10 @@ spec:
           secretKeyRef:
             name: notepad-secrets
             key: database
+    volumeMounts:
+      - name: mysql-persistent-storage
+        mountPath: /var/lib/mysql
+  volumes:
+  - name: mysql-persistent-storage
+    persistentVolumeClaim:
+      claimName: mysql-pv-claim

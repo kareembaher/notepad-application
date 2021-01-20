@@ -47,6 +47,7 @@ echo ""
 echo "Running Kubernetes files..."
 sleep 2
 kubectl create -f secret.yml
+kubectl create -f mysql.volume.claim.yml
 kubectl create -f mysql.service.yml 
 kubectl create -f mysql.pod.yml
 kubectl create -f notepad.service.yml
