@@ -29,14 +29,14 @@ echo ""
 echo ""
 echo "Building the docker image..."
 sleep 2
-docker build .
+docker build -t $username/notepad .
 
 #Pushing the docker image to docker-hub
 echo ""
 echo ""
 echo "Pushing the docker image to docker-hub..."
 sleep 2
-docker push kareembaher/notepad:latest
+docker push $username/notepad
 
 #Change working directory
 cd ../kubernetes-files
