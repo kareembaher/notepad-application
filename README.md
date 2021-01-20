@@ -54,4 +54,4 @@ to list the pods you have do:
 $ kubectl get pod
 
 to access the notepad application, you will have to get the service IP address for the notepad deployment:
-minikube service notepad-app-service
+$ minikube service notepad-app-service
