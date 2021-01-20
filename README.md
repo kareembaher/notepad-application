@@ -66,7 +66,7 @@ minikube service notepad-app-service
 ```
 
 ## The build.sh script process:
-This section describes what is done behind the curtains.
+This section describes what is done behind the scenes.
 
 - When you execute the bash script `build.sh` you will be promted to enter your Docker-hub username and password.
 - The password you entered will be stored in the `docker-password.txt` file with this command `echo $password > docker-password.txt`.
