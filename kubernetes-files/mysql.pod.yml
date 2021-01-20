@@ -17,11 +17,6 @@ spec:
           secretKeyRef:
             name: notepad-secrets
             key: password
-      - name: MYSQL_USER
-        valueFrom:
-          secretKeyRef:
-            name: notepad-secrets
-            key: user
       - name: MYSQL_PASSWORD
         valueFrom:
           secretKeyRef:

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notepad-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: notepad-app
+  template:
+    metadata:
+      labels:
+        app: notepad-app
+    spec:
+      containers:
+      - name: notepad
+        image: kareembaher/notepad
+        ports:
+        - name: notepad-port
+          containerPort: 8080
+        env:
+          - name: ENV_TEST_MYSQL_HOST
+            value: database-service
+          - name: SPRING_PROFILES_ACTIVE
+            value: test
+          - name: MYSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: notepad-secrets
+                key: database
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: notepad-secrets
+                key: password
