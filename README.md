@@ -8,7 +8,7 @@ This repo is to create a Notpad web application with Kubernetes.
 Notepad is a simple Spring boot application, it stores the notes in a MySQL database instance. MySQL database needs to be up and running for notepad to work. It exposes the actuator endpoints as well as the /notes endpoint, which creates a note when it gets a POST request. The main goal is to run Notepad on a Kubernetes cluster (including MySQL).
 
 #### So, the plan will be as follows:
-- Build or notepad application.
+- Build our notepad application.
 - Build a docker image out of this application
 - Create a deployment with 2 replicas for the Notepad application
 - Create 1 pod for Mysql database to store your notes
