@@ -4,6 +4,15 @@ Hello,
 
 This repo is to create a Notpad web application with Kubernetes.
 
+## Description:
+Notepad is a simple Spring boot application, it stores the notes in a MySQL database instance. MySQL database needs to be up and running for notepad to work. It exposes the actuator endpoints as well as the /notes endpoint, which creates a note when it gets a POST request. The main goal is to run Notepad on a Kubernetes cluster (including MySQL).
+
+#### So, the plan will be as follows:
+- Build or notepad application.
+- Build a docker image out of this application
+- Create a deployment with 2 replicas for the Notepad application
+- Create 1 pod for Mysql database to store your notes
+
 ## Prerequsits:
 You will need to install the following:
 #### Maven:
@@ -22,11 +31,6 @@ You will need to install the following:
 ```
 minikube start --driver=docker
 ```
-
-## Description:
-We will create 3 pods for the notepad:
-- A deployment with 2 pods for the Notepad application
-- 1 pod for Mysql database to store your notes
 
 ## Repo file structure:
 In this repo you will find 2 directories and 2 files:
@@ -104,12 +108,11 @@ minikube start --driver=docker
 ```
 kubectl create -f secret.yml
 ```
-- Secondly, I configured a volume to be mounted for the mysql pod to preserve its state if its deleted or restarted. So, if you created a new note and you for some reason deleted the Mysql pod, you will find your note when you recreate the Mysql pod again. So we will run 
+- Secondly, I configured a volume to be mounted for the mysql pod to preserve its state if its deleted or restarted. So, if you created a new note, and for some reason you deleted the Mysql pod, you will find it when you recreate the Mysql pod again. So we will run this command to create the volume claim for the volume.
 ```
 kubectl create -f mysql.volume.claim.yml
 ``` 
-to create the volume claim for the volume.
-- Thirdly, we will create our services for the Mysql pod and Notepad deployment, where we will communicate to them and to each other using these services, using this command 
+- Thirdly, we will create our services for the Mysql pod and Notepad deployment, where we will communicate to them and to each other using them, using this command 
 ```
 kubectl create -f mysql.service.yml
 ``` 
@@ -117,15 +120,15 @@ and
 ```
 kubectl create -f notepad.service.yml
 ```
-- Then, we will start the Mysql pod where we configured the image to be mysql v.5.7, listen to port 3306, mounted the volume where Mysql stores its data, and env. variables imported from secrets previously created 
+- Then, we will start the Mysql pod, where we configured the image to be `mysql v.5.7`, listen to port `3306`, mounted the volume where Mysql stores its data in `/var/lib/mysql`, and env. variables imported from secrets previously created 
 ```
 kubectl create -f mysql.pod.yml
 ```
-- Finally, we will start creating our Notepad deployment, where I configured it with 2 replicas, listen to port 8080, env. variables imported from secrets previously created, and imported the image from our Docker-hub regestry. We used this command to start our deployment 
+- Finally, we will start creating our Notepad deployment, where I configured it with `2 replicas`, listen to port `8080`, env. variables imported from secrets previously created, and the image imported from our notepad image from the Docker-hub regestry. We used this command to start our deployment 
 ```
 kubectl create -f notepad.deployment.yml
 ```
-- Now, you apllication is ready to be used, you just need to check if your pods are running using this command
+- Now, you application is ready to be used, you just need to check if your pods are running using this command
 ```
 kubectl get pod
 ```
