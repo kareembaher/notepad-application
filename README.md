@@ -96,7 +96,7 @@ here the `$username` will be subistituted with the username you provided for the
 ```
 docker push $username/notepad
 ```
-- Now we will begin executing the Kubernetes yaml files in `kubernetes-files` directory,documentation steps in Prerequisit section, if not, run this command 
+- Now we will begin executing the Kubernetes yaml files in `kubernetes-files` directory, assuming that you started the Kubernetes in the steps in `Prerequisit` section, if not, run this command 
 ```
 minikube start --driver=docker
 ```
