@@ -41,9 +41,6 @@ docker push $username/notepad
 #Change working directory
 cd ../kubernetes-files
 
-#Starting minikube
-minikube start --driver=docker
-
 #Execute kubernetes yaml files
 echo ""
 echo ""
