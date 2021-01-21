@@ -75,7 +75,10 @@ minikube service notepad-app-service
 This section describes what is done behind the scenes.
 
 - When you execute the bash script `build.sh` you will be promted to enter your Docker-hub username and password.
-- The password you entered will be stored in the `docker-password.txt` file with this command `echo $password > docker-password.txt`.
+- The password you entered will be stored in the `docker-password.txt` file with this command 
+```
+echo $password > docker-password.txt
+```
 - Then you will be logged in using the username and password you provided in the start of the `build.sh` script using this command 
 ```
 cat docker-password.txt | docker login --username $username --password-stdin
