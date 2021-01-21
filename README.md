@@ -87,12 +87,12 @@ cat docker-password.txt | docker login --username $username --password-stdin
 ```
 mvn clean install package -Dmaven.test.skip=true
 ```
-- After the previous step is finished, is to make a docker image out of the built application using this command 
+- After the previous step is finished, the script will make a docker image out of the built application using this command 
 ```
 docker build -t $username/notepad .
 ``` 
 here the `$username` will be subistituted with the username you provided for the Docker-hub account.
-- Now, we will push or image to our docker-hub regestry using this command 
+- Now, we will push the image to our docker-hub regestry using this command 
 ```
 docker push $username/notepad
 ```
